@@ -1,0 +1,16 @@
+@font-face {
+    font-family: "Boris Black";
+    src: url('../fonts/BorisBlackBloxx.ttf');
+    -webkit-font-smoothing: antialiased;
+    font-weight: normal; 
+}
+
+:root {
+    --color-primary: rgb(255, 200, 0);
+    --color-secondary: rgb(255, 255, 255);
+    --color-tertiary: aliceblue;
+    --color-accent: #FF7900;
+
+    --color-dark: black;
+    --color-light: white;
+}

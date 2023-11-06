@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="_resources/style/home.css">
+    <link rel="stylesheet" href="_resources/style/global.css">
+    <script src="_resources/scripts/home.js"></script>
+    <script src="_resources/scripts/global.js"></script>
+    <script src="_resources/scripts/serverconfig.js"></script>
+    <title>NEO Banco</title>
+</head>
+<body>
+
+    <div class="modals" id="modals" style="visibility: hidden; display: none;">
+        <div>
+            <div class="post-modal" id="createPostModal">
+                <div class="modal-header">
+                    <h1>Barter</h1>
+                    <h1 onclick="modalVisibility(false)">X</h1>
+                </div>
+                <div class="pm-mini-post">
+                    <div class="mini-post-sidebar">
+                        <div>
+                            <div class="sidebar-header"> </div>
+                            <h3>Privacy</h3>
+                            <label for="sombras"> 
+                                <input type="radio" name="privacy" id="sombras" value="sombras"> 
+                                <p>&bull; Sombras</p>
+                            </label>
+                            <label for="luz">
+                                <input type="radio" name="privacy" id="luz" value="luz"> 
+                                <p>&bull; Luz</p>
+                            </label>
+                            <p>Choose whether to link this post to your account, or to stay anonymous.</p>
+                        </div>
+
+                        <div>
+                            <div class="sidebar-header"> </div>
+                            <h3>Type</h3>
+                            <label for="requesting"> 
+                                <input type="radio" name="type" id="requesting" value="requesting">
+                                <p>&bull; Requesting</p>
+                            </label>
+                            <label for="offering">
+                                <input type="radio" name="type" id="offering" value="offering">
+                                <p>&bull; Offering</p>
+                            </label>
+                            <p>Offer something to your community, or see if someone has what you need.</p>
+                        </div>
+
+                        <div>
+                            <div class="sidebar-header"> </div>
+                            <h3>Exchanges</h3>
+                            <label for="money"> 
+                                <input type="checkbox" name="exchange" id="money" value="money">
+                                <p>Money</p>
+                            </label>
+                            <label for="barter">
+                                <input type="checkbox" name="exchange" id="barter" value="barter">
+                                <p>Bartering</p>
+                            </label>
+                            <p>Set whether you're open to barter, want money in return, or both.</p>
+                        </div>
+                    </div>
+                    <form action="" class="post-content">
+                        <input class="big" type="text" name="" id="" placeholder="Type post name here">
+                        <div class="post-text-container">
+                            <textarea name="" id="" placeholder="What do you need? What do you want? What are you offering?"></textarea>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="background">
+        <!-- <div class="plain white" style="--block-height: 5em"></div> -->
+        <div class="plain white" style="--block-height: 20em"></div>
+        <img class="parallax blend up pageheight" src="_resources/media/home/background.jpg" style="--blend-depth: 10em; --parallax-offset: 300px; --parallax-speed: 0.75; --block-height: 1000px">
+        <div class="plain yellow friends live" style="--block-height: calc(var(--friend-height) + 5em); --friend-id: textbox1;"></div>
+        <div class="dotted yellow" style="--block-height: 0.5em"></div>
+        <!-- <img src="_resources/media/home/posts-background.jpg" class="friends blur" style="--blur-radius: 10px; --block-height: calc(var(--friend-height) + 25em); --friend-id: post-preview;"></img> -->
+        <div class="plain yellow" style="--block-height: 35em;"></div>
+        <div class="plain white friends live" style="--block-height: calc(30em + var(--friend-height) - 500px); --friend-id: post-preview"></div>
+        <div class="plain white friends live" style="--block-height: calc(32em + var(--friend-height) - 240px); --friend-id: start-box"></div>
+        <div class="dotted white" style="--block-height: 0.5em"></div>
+        <!-- <div class="plain yellow" style="--block-height: 2em"></div> -->
+        <div class="footer">
+            <h3>&copy; 2023 Neo Globo</h3>
+            <h3>Read more about us</h3>
+        </div>
+        <div class="downarrow">
+            <embed src="_resources/media/home/scroll-down.svg">
+        </div>
+    </div>
+
+    <div class="foreground">
+        <div class="spacer" style="--block-height: 8em"></div>
+        <div class="textblock nobg fit center-flex">
+            <embed src="_resources/media/logos/new-banner.svg" alt="" srcset="" class="logo">
+        </div>
+
+        <div class="textblock nobg center fit" style="width: 50%;">
+            <h2 class="boris">Providing opportunity globally and locally.</h2>
+        </div>
+
+        <div class="spacer" style="--block-height: 25em"></div>
+
+        <div class="textblock rounded fit relative" style="--block-height: 15em" id="textbox1">
+            <div class="scroll-color"> </div>
+            <div class="scroll-header">
+                <div class="scrolling" id="headerTitleScroll" style="--element-gap: 15em;">
+                    <h1>Mission</h1>
+                    <h1>About Us</h1>
+                    <h1>Stories</h1>
+                    <h1>What sets us apart</h1>
+                </div>
+            </div>
+            <hr>
+            <div class="scroller-container">
+                <div onclick="modAllScrolls(-1)">
+                    <
+                </div>
+                <div class="scroller-content scrolling fullwidth" style="--element-gap: 100vw">
+                    <div>
+                        <h3>NEO Means Necessidades e Oportunidades.</h3>
+                        <p>NEO Banco Globo aims to give everybody a place to connect and exchange their unique skillsets. We encourage you to barter with your neighbors, in communities on the most macro and micro levels. We create tools that allow you to market yourself on whatever scale you need. NEO Banco Globo lets you share with your neighbors, get the help you need, and more.</p>
+                    </div>
+                    <div class="slide-centered">
+                        <div class="about-header">
+                            <div>
+                                <h3>Who are we?</h3>
+                                <p>NEO Globo was founded by ordinary people from all over the world.</p>
+                                <!-- <hr> -->
+                                <div class="about-us-list">
+                                    <div>
+                                        <h2>Enivo</h2>
+                                        <h3>Head of Global Outreach & Art Consultant</h3>
+                                        <p>Stuff goes here.</p>
+                                    </div>
+                                    
+                                    <div>
+                                        <h2>Paxton</h2>
+                                        <h3>Design & Programming</h3>
+                                        <p>What.... me??</p>
+                                    </div>
+
+                                    <div>
+                                        <h2>Andrew</h2>
+                                        <h3>Consultant & Artist</h3>
+                                        <p>Stuff goes here.</p>
+                                    </div> 
+        
+                                    <div>
+                                        <h2>Zaxxr</h2>
+                                        <h3>Concept & Lead Designer</h3>
+                                        <p>Stuff goes here.</p>
+                                    </div>
+        
+                                    <div>
+                                        <h2>Kamil</h2>
+                                        <h3>Initial Pitch & Youth Outreach</h3>
+                                        <p>Stuff goes here.</p>
+                                    </div>
+        
+                                    <div>
+                                        <h2>Ahmad</h2>
+                                        <h3>Technical Security Advisor</h3>
+                                        <p>Stuff goes here.</p>
+                                    </div>  
+        
+                                    <div>
+                                        <h2>Diaz</h2>
+                                        <h3>Consultant</h3>
+                                        <p>Stuff goes here.</p>
+                                    </div> 
+                                </div>
+                            </div>
+                            <div class="scrolling auto-scroll" onclick="modScroll(this, 1)">
+                                <div>
+                                    <img src="_resources/media/home/headshots/andrew.jpg" alt="">
+                                </div>
+                                <div>
+                                    <img src="_resources/media/home/headshots/pax.jpg" alt="">
+                                </div>
+                                <div>
+                                    <img src="_resources/media/home/headshots/car.jpg" alt="">
+                                </div>
+                                <div>
+                                    <img src="_resources/media/home/headshots/shave.jpg" alt="">
+                                </div>
+
+                                <div>
+                                    <img src="_resources/media/home/headshots/jason.jpg" alt="">
+                                </div>
+                                <div>
+                                    <img src="_resources/media/home/headshots/beach.jpeg" alt="">
+                                </div>
+                                <div>
+                                    <img src="_resources/media/home/headshots/scorpion.jpg" alt="">
+                                </div>
+                                <div>
+                                    <img src="_resources/media/home/headshots/rod.jpeg" alt="">
+                                </div>
+                                <div>
+                                    <img src="_resources/media/home/headshots/GG.jpg" alt="" style="background-position: top;">
+                                </div>
+                                <div>
+                                    <img src="_resources/media/home/headshots/watches.jpg" alt="">
+                                </div>
+                                <div>
+                                    <img src="_resources/media/home/headshots/enivo.jpeg" alt="">
+                                </div>
+                                <div>
+                                    <img src="_resources/media/home/headshots/picture.jpeg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div>
+                        <h1>Section 3!</h1>
+                        <p>This is the third and final slide.</p>
+                    </div>
+                    <div>
+                        <h1>Section 4?!</h1>
+                        <p>Just kidding! This is the real last slide.</p>
+                    </div>
+                </div>
+                <div onclick="modAllScrolls(1)">
+                    >
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="spacer friends live" style="--block-height: calc(var(--friend-height) - 4em); --friend-id: textbox1"></div> -->
+        <div class="spacer" style="--block-height: 5em"></div>
+
+        <div style="text-align: center;">
+            <h1 class="boris center">Check out the latest posts.</h1>
+            <h3 class="center">See a live preview of what's happening on NEO Banco</h3>
+        </div>
+        <div class="preview-container rounded unrestricted" id="post-preview" style="flex-direction: row; --block-height: 20em">
+            <div class="filters">
+                <div class="preview-header">
+                    <h2 class="boris">Pick a State</h2>
+                </div>
+                <div id="state-container" class="state-container">
+
+                </div>
+            </div>
+            <div class="posts">
+                <div class="preview-header">
+                    <h2 class="boris">Most recent posts</h2>
+                </div>
+                <div class="preview-post-container">
+
+                </div>
+                <div class="all-posts-button">
+                    <h3>
+                        View All Posts
+                    </h3>
+                </div>
+            </div>
+        </div>
+        <div class="spacer friends live" style="--block-height: calc(32em - var(--friend-height)); --friend-id: post-preview"></div>
+        <div class="header">
+            <h1 class="boris">Get Started</h1>
+        </div>
+        <div class="textblock rounded fit-width fit" style="--block-height: 15em" id="start-box">
+            <div class="center" style="display: flex; height: max-content;">
+                <div class="start-buttons">
+                    <div onclick="modalVisibility(true)">
+                        <img src="_resources/media/home/Icons/troca.jpeg" alt="">
+                        <!-- <h3></h3> -->
+                    </div>
+
+                    <div>
+                        <img src="_resources/media/home/Icons/Post.jpg" alt="">
+                        <h3>View Posts</h3>
+                    </div>
+
+                    <div>
+                        <img src="_resources/media/home/Icons/Post.jpg" alt="">
+                        <h3>Placeholder</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <template id="preview-post-template">
+        <div class="preview-post">
+            <div>
+                <h3 id="title">I need water.</h3>
+                <h4 id="category">Food</h4>
+            </div>
+            <h4 id="location">Tacoma, Washington</h4>
+        </div>
+    </template>
+
+    <template id="state-template">
+        <div class="preview-state">
+            <p id="name"></p>
+        </div>
+    </template>
+</body>
+</html>
