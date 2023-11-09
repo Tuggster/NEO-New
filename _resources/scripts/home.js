@@ -5,19 +5,52 @@ function scrollPage(dist) {
     window.scroll(0, dist * window.innerHeight / 100);
 }
 
+let wdElements;
 window.addEventListener('load', function() {
+    wdElements = document.querySelectorAll('.wrap-detect');
     let downArrow = document.querySelector(".downarrow > embed");
     // console.log(downArrow);
     // console.log("cheese");
-    downArrow.addEventListener('click', function() {
-        console.log("event fired!");
-        scrollPage(125);
-    })
-    populateStates();
-    initPosts()
-    pullFirst5FromRegion();
-    modAllScrolls(0);
+
+    checkWrapDetectElements(true);
 });
+
+window.addEventListener('resize', function() {
+    console.log("check again!")
+    checkWrapDetectElements(false);
+})
+
+function checkWrapDetectElements(start) {
+    console.log(wdElements)
+    wdElements.forEach(el => {
+        let isBottom = el.classList.contains('bottom');
+        let siblings = Array.from(el.parentElement.children);
+        let myIndex = siblings.indexOf(el);
+        let sibling = siblings[1 - myIndex];
+
+
+        let elBounds = el.getBoundingClientRect();
+        let siblingBounds = sibling.getBoundingClientRect();
+        let elPoint = isBottom ? elBounds.bottom : elBounds.top;
+        let siblingPoint = isBottom ? siblingBounds.bottom : siblingBounds.top;
+
+        console.log(`This point: ${elPoint}, sibling point: ${siblingPoint}. Bottom? ${isBottom}`)
+
+        if (elPoint != siblingPoint && !el.classList.contains('wrapped')) {
+            el.classList.add('wrapped');
+            if (start == false) {
+                el.style.setProperty("--wrap-point", innerWidth);
+            }
+        }
+
+        let wrapPoint = getComputedStyle(el).getPropertyValue("--wrap-point");
+        if (wrapPoint != '') {
+            if (innerWidth > wrapPoint && el.classList.contains('wrapped')) {
+                el.classList.remove('wrapped');
+            }
+        }
+    });
+}
 
 
 let currentSlide = 0;

@@ -46,8 +46,10 @@ function httpReq(method, url, extras) {
 }
 
 let parallaxElements;
+let fadeElements;
 document.addEventListener('scroll', function() {
     setTimeout(updateParallax, 4);
+    setTimeout(checkScrolls, 4);
 });
 
 function computeFriendStyle(late) {
@@ -78,12 +80,33 @@ function computeFriendStyle(late) {
 
 }
 
+let fontSize = 0;
+
 window.onload = function() {
     // console.log("hi")
-    parallaxElements = document.querySelectorAll(".parallax");;
+    parallaxElements = document.querySelectorAll(".parallax");
+    fadeElements = document.querySelectorAll(".scrollpast");;
+    fontSize = parseFloat(getComputedStyle(document.getElementsByTagName('p')[0]).fontSize.split('px')[0]);
+
+    fadeElements.forEach(element => {
+        let target = getComputedStyle(element).getPropertyValue('--fade-element');
+        document.getElementById(target).classList.add('fade');
+    });
+
+    console.log(parallaxElements)
     updateParallax();
     computeFriendStyle(false);
     attatchAutoscrolls();
+
+
+    const observer = new IntersectionObserver(startAnimation);
+    const options = { root: null, rootMargin: '0px', threshold: 1 }; 
+
+    const elements = document.querySelectorAll('.slide');
+    console.log(elements);
+    elements.forEach(el => {
+        observer.observe(el, options);
+    });
 }
 
 function attatchAutoscrolls() {
@@ -103,6 +126,38 @@ window.onresize = function() {
     updateParallax();
 }
 
+function checkScrolls() {
+    fadeElements.forEach(el => {
+        let bottomBound = el.getBoundingClientRect().bottom;
+        let scrollPosition = scrollY;
+        let targetID = getComputedStyle(el).getPropertyValue('--fade-element');
+        let targetColor = getComputedStyle(el).getPropertyValue('--fade-color');
+        let target = document.getElementById(targetID);
+        target.style.setProperty('--fade-color', `var(--color-${targetColor})`);
+        
+        let isFaded = target.classList.contains("faded");
+
+        if (bottomBound <= 0 && !isFaded) {
+            target.classList.add('faded');
+        } else if (bottomBound > 0 && isFaded) {
+            target.classList.remove('faded');
+        }
+     })
+}
+
+const startAnimation = (entries, observer) => {
+    entries.forEach(entry => {
+        entry.target.classList.toggle("slide-in", entry.isIntersecting);
+        let count = Number(getComputedStyle(entry.target).getPropertyValue('--observe-count')) || 1;
+        entry.target.style.setProperty('--observe-count', count + 1);
+        console.log(`New count: ${count}`)
+
+        if (count >= 2)
+            observer.unobserve(entry.target);
+    });
+};
+  
+
 function updateParallax() {
 
     if (!parallaxElements) {
@@ -110,20 +165,21 @@ function updateParallax() {
     }
 
     parallaxElements.forEach(element => {
-        let pOffset = getComputedStyle(element).getPropertyValue('--parallax-offset');
-        let pSpeed = getComputedStyle(element).getPropertyValue('--parallax-speed');
+        let pOffset = getComputedStyle(element).getPropertyValue('--parallax-offset') || '0px';
+        let pSpeed = getComputedStyle(element).getPropertyValue('--parallax-speed') || 1;
         
         let aspect = element.width / element.naturalWidth;
         pOffset = Number(pOffset.split('px')[0]) / aspect;
         pSpeed *= aspect;
-    
+        
         let elementBounds = element.getBoundingClientRect();
-        let frameHeight = elementBounds.bottom - elementBounds.top;
+        let frameHeight = getComputedStyle(element).getPropertyValue('--block-height').split('vh')[0] * innerHeight / 100;
         let scrollPos = (pOffset + scrollY) * Number(pSpeed);
         let adjustedHeight = element.naturalHeight * aspect;
         let maxScroll = (adjustedHeight - frameHeight);
 
         // console.log(`Max scroll: ${maxScroll}`);
+        // console.log(`frameheight: ${frameHeight}`);
         // console.log(`Current scroll: ${scrollPos}`);
         // console.log(`Frame height: ${frameHeight}`);
         // console.log(`Image height: ${adjustedHeight}`);
@@ -131,6 +187,6 @@ function updateParallax() {
         // console.log(elementBounds.top + elementBounds.bottom);
         
         scrollPos = clamp(scrollPos, 0, maxScroll);
-        element.style.objectPosition = `0px ${-scrollPos}px`
+        element.style.objectPosition = `0px ${-scrollPos}px`;
     });
 }

@@ -11,6 +11,10 @@
     --color-tertiary: aliceblue;
     --color-accent: #FF7900;
 
-    --color-dark: black;
+    --color-dark: rgb(35, 35, 35);
     --color-light: white;
+}
+
+body {
+    visibility: hidden;
 }
