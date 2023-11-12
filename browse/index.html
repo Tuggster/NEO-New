@@ -4,8 +4,82 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Browse Posts</title>
+    <link rel="stylesheet" href="/_resources/style/browse.css">
+    <link rel="stylesheet" href="/_resources/style/global.css">
+    <script src="/_resources/scripts/global-localize.js"></script>
+    <script src="/_resources/scripts/global.js"></script>
+    <script src="/_resources/scripts/serverconfig.js"></script>
+    <script src="/_resources/scripts/browse.js"></script>
 </head>
 <body>
-    
+
+    <header>
+        <h1>NEO Globo</h1>
+    </header>
+
+    <div class="postview">
+        <div class="settings">
+            <h1 id="filters-h1">Set Filters</h1>
+            <div class="textbox category" id="category">
+                <div class="flex">
+                    <h3 id="filters1-heading">Category:</h3>
+                    <h5 class="clear">Clear</h5>
+                </div>
+                <br>
+                <p value="food">Food</p>
+                <p value="necessities">Necessities</p>
+                <p value="music">Music</p>
+                <p value="takeaseat">Take a Seat</p>
+                <p value="clothes">Clothing</p>
+                <p value="services">Services</p>
+            </div>
+
+            <div class="textbox category" id="direction">
+                <div class="flex">
+                    <h3 id="filters2-heading">Type:</h3>
+                    <h5 class="clear">Clear</h5>
+                </div>
+                <br>
+                <p value="1">Requesting</p>
+                <p value="0">Offering</p>
+            </div>
+
+            <div class="textbox category" id="exchange">
+                <div class="flex">
+                    <h3 id="filters2-heading">Exchange:</h3>
+                    <h5 class="clear">Clear</h5>
+                </div>
+                <br>
+                <p value="1">Money</p>
+                <p value="2">Bartering</p>
+            </div>
+
+        </div>
+        <div class="content">
+            <div class="page-content">
+
+            </div>
+        </div>
+    </div>
+
+    <template id="listing-template">
+        <div class="listing-row-container">
+            <hr>
+            <div class="listing-row-header">
+                <div class="listing-header-info">
+                    <h2>Seeking 3lbs of rice</h2>
+                    <h4>Posted 9/26/23 at 17:25</h4>
+                </div>
+                <div class="listing-header-icon">
+                    <img src="" alt="">
+                </div>
+            </div>
+            <p>Willing to trade for beans, money, or other</p>
+            <!-- <button>Reply</button>
+            <button>Report</button> -->
+            <hr>
+        </div>
+    </template>
+
 </body>
 </html>

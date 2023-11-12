@@ -7,6 +7,13 @@
     --center-margin: 10vw;
 }
 
+/* Links */
+
+a {
+    text-decoration: none;
+    color: unset;
+}
+
 /* Logo */
 
 body, html {
@@ -219,18 +226,22 @@ body, html {
     @keyframes slideInFromLeft {
         0% {
             transform: translateX(-100%);
+            -webkit-transform: translateX(-100%);
         }
         100% {
             transform: translateX(0);
+            -webkit-transform: translateX(0);
         }
     }
 
     @keyframes slideInFromRight {
         0% {
             transform: translateX(100%);
+            -webkit-transform: translateX(100%);
         }
         100% {
             transform: translateX(0);
+            -webkit-transform: translateX(0);
         }
     }
 

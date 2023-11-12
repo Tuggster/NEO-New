@@ -54,11 +54,11 @@ document.addEventListener('scroll', function() {
 
 function computeFriendStyle(late) {
     let buddies = document.querySelectorAll(".friends");
-    console.log("Refreshing friends.")
+    // console.log("Refreshing friends.")
     let friends = new Array();
 
     const ro = new ResizeObserver(friends => {
-        console.log("test");
+        // console.log("test");
         computeFriendStyle(true);
     });
 
@@ -82,6 +82,7 @@ function computeFriendStyle(late) {
 
 let fontSize = 0;
 
+let wdElements;
 window.onload = function() {
     // console.log("hi")
     parallaxElements = document.querySelectorAll(".parallax");
@@ -93,7 +94,7 @@ window.onload = function() {
         document.getElementById(target).classList.add('fade');
     });
 
-    console.log(parallaxElements)
+    // console.log(parallaxElements)
     updateParallax();
     computeFriendStyle(false);
     attatchAutoscrolls();
@@ -107,12 +108,53 @@ window.onload = function() {
     elements.forEach(el => {
         observer.observe(el, options);
     });
+
+    wdElements = document.querySelectorAll('.wrap-detect');
+    checkWrapDetectElements(true);
+
+}
+
+window.addEventListener('resize', function() {
+    // console.log("check again!")
+    checkWrapDetectElements(false);
+})
+
+function checkWrapDetectElements(start) {
+    // console.log(wdElements)
+    wdElements.forEach(el => {
+        let isBottom = el.classList.contains('bottom');
+        let siblings = Array.from(el.parentElement.children);
+        let myIndex = siblings.indexOf(el);
+        let sibling = siblings[1 - myIndex];
+
+
+        let elBounds = el.getBoundingClientRect();
+        let siblingBounds = sibling.getBoundingClientRect();
+        let elPoint = isBottom ? elBounds.bottom : elBounds.top;
+        let siblingPoint = isBottom ? siblingBounds.bottom : siblingBounds.top;
+
+        // console.log(`This point: ${elPoint}, sibling point: ${siblingPoint}. Bottom? ${isBottom}`)
+
+        if (elPoint != siblingPoint && !el.classList.contains('wrapped')) {
+            el.classList.add('wrapped');
+            if (start == false) {
+                el.style.setProperty("--wrap-point", innerWidth);
+            }
+        }
+
+        let wrapPoint = getComputedStyle(el).getPropertyValue("--wrap-point");
+        if (wrapPoint != '') {
+            if (innerWidth > wrapPoint && el.classList.contains('wrapped')) {
+                el.classList.remove('wrapped');
+            }
+        }
+    });
 }
 
 function attatchAutoscrolls() {
     let autos = document.getElementsByClassName("auto-scroll");
     autos = Array.from(autos);
-    console.log(autos); 
+    // console.log(autos); 
 
     autos.forEach(element => {
         setInterval(function() {
@@ -150,7 +192,7 @@ const startAnimation = (entries, observer) => {
         entry.target.classList.toggle("slide-in", entry.isIntersecting);
         let count = Number(getComputedStyle(entry.target).getPropertyValue('--observe-count')) || 1;
         entry.target.style.setProperty('--observe-count', count + 1);
-        console.log(`New count: ${count}`)
+        // console.log(`New count: ${count}`)
 
         if (count >= 2)
             observer.unobserve(entry.target);

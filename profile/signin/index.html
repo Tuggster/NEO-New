@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/_resources/style/profile.css">
+    <link rel="stylesheet" href="/_resources/style/global.css">
+    <script src="/_resources/scripts/global-localize.js"></script>
+    <script src="/_resources/scripts/global.js"></script>
+    <script src="/_resources/scripts/serverconfig.js"></script>
+    <script src="/_resources/scripts/profile.js"></script>
+</head>
+<body>
+    <div class="spacer" style="--block-height: 10vh"></div>
+    <div class="flex">
+        <div class="container">
+            <div class="flex" name="login">
+                <h1>Sign In</h1>
+                <span><h4>Or <a onclick="hide('login'); show('create')">create an account</a></h4></span>
+            </div>
+            <div class="textbox" name="login">
+                <h2>Log in to view your profile</h2>
+                <input type="text" id="userid" placeholder="User ID">
+                <input type="password" id="userpw" placeholder="Password">
+                <button onclick="getAuthToken()">Sign In</button>
+            </div>
+
+            <div class="textbox hidden" name="create">
+                <h2>Create your free account.</h2>
+                <p>No username, email, or phone number required. Just remember your User ID and password to come back to your profile.</p>
+                <input type="password" id="" placeholder="Password">
+                <input type="password" id="" placeholder="Confirm password">
+                <button>Get Started</button>
+                <span><h4>Already have an account? <a onclick="show('login'); hide('create')">Sign in.</a></h4></span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

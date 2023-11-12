@@ -3,8 +3,7 @@
         "locale": "pt-BR",
         "filename": "pt-BR.json",
         "friendlyname": "Portugese (Brazil)"
-    },
-    {
+    }, {
         "locale": "en-US",
         "filename": "en-US.json",
         "friendlyname": "English (US)"

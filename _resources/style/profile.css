@@ -1,0 +1,92 @@
+.hidden {
+    visibility: hidden;
+    display: none !important;
+}
+
+/* Flex */
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.container {
+    width: 30%;
+    height: fit-content;
+
+    /* border: 1px solid black; */
+    padding: 1em;
+}
+
+/* Spacers */
+div.spacer {
+    width: 100%;
+    height: var(--block-height, 5em);
+}
+
+/* Header */
+h1, h2, h3, h4 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+h2 {
+    margin-bottom: 5px;
+}
+
+
+/* Signin dialog styling */
+hr {
+    width: 100%;
+}
+
+span a {
+    text-decoration: none;
+    color: black;
+}
+
+.container h4 {
+    margin-top: 0.5em;
+}
+
+p {
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+}
+
+.container a {
+    user-select: none;
+    cursor: pointer;
+}
+
+.container input {
+    display: block;
+    margin-top: 0.5em;
+    font-size: larger;
+    border: 1px solid black;
+    padding: 5px;
+    padding-left: 1em;
+    box-sizing: border-box;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    width: 100%;
+}
+
+.container button {
+    width: 100%;
+    margin-top: 0.75em;
+    font-size: xx-large;
+    border-radius: 10px;
+    background-color: var(--color-primary);
+}
+
+.container h1 {
+    margin-bottom: 0.25em;
+}
+
+.container img {
+    width: 100%;
+}

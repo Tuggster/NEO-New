@@ -20,11 +20,7 @@ function languageTable(elements) {
 
 let languageIndex;
 let languageFile;
-fetch('./_resources/locale.json')
-    .then((response) => response.json())
-    .then((json) => {
-        languageIndex = new langIndex(json);
-    });
+
 
 const language = navigator.language;
 let languageData;
@@ -32,15 +28,22 @@ window.addEventListener('load', function() {
     console.log("Loaded language script.");
     console.log(`Local language: ${language}`);
 
-    languageData = languageIndex.getLocale(language);
 
-    if (languageData) {
-        console.warn(`Loaded language profile: ${languageData.friendlyname}`);
-        loadLanguageFile(languageData.filename)
-    } else {
-        console.error('No language profile avaliable for this locale. No localization will be applied.')
-        showPage();
-    }
+    fetch('/_resources/locale.json')
+    .then((response) => response.json())
+    .then((json) => {
+        languageIndex = new langIndex(json);
+        languageData = languageIndex.getLocale(language);
+        
+        if (languageData) {
+            console.warn(`Loaded language profile: ${languageData.friendlyname}`);
+            loadLanguageFile(languageData.filename)
+        } else {
+            console.error('No language profile avaliable for this locale. No localization will be applied.')
+            showPage();
+        }
+    });
+
 })
 
 function hidePage() {
@@ -52,7 +55,7 @@ function showPage() {
 }
 
 function loadLanguageFile(filename) {
-    fetch(`/lang/${filename}`)
+    fetch(`./lang/${filename}`)
     .then((response) => response.json())
     .then((json) => {
         languageFile = new languageTable(json);
