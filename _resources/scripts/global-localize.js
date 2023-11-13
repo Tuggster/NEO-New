@@ -22,18 +22,28 @@ let languageIndex;
 let languageFile;
 
 
-const language = navigator.language;
+let language = localStorage.getItem("language") || navigator.language;
 let languageData;
 window.addEventListener('load', function() {
     console.log("Loaded language script.");
     console.log(`Local language: ${language}`);
 
+    var userPickedLang = !(this.localStorage.getItem("language") == "undefined" || !this.localStorage.getItem("language"));
+
+    if (!userPickedLang) {
+        console.log("No language prefrence chosen yet.")
+        language = navigator.language;
+    }
 
     fetch('/_resources/locale.json')
     .then((response) => response.json())
     .then((json) => {
         languageIndex = new langIndex(json);
         languageData = languageIndex.getLocale(language);
+
+        if (!userPickedLang) {
+            showPickerDropdown(languageData.friendlyname);
+        }
         
         if (languageData) {
             console.warn(`Loaded language profile: ${languageData.friendlyname}`);
@@ -45,6 +55,59 @@ window.addEventListener('load', function() {
     });
 
 })
+
+function revealLanguagePicker() {
+    let pickerElement = document.getElementsByClassName("languagepicker")[0];
+
+    if (pickerElement) {
+        pickerElement.remove();
+    }
+
+    showPickerDropdown(languageData.friendlyname);
+}
+
+function showPickerDropdown(friendlyname) {
+    let pickerElement = document.createElement("p");
+    pickerElement.classList.add("languagepicker");
+    pickerElement.innerHTML = `Current Language: ${friendlyname}<br>Click to Change`;
+    document.body.appendChild(pickerElement);
+
+    pickerElement.onclick = function() {
+        pickerElement.onclick = {};
+        pickerElement.classList.add("override");
+
+        pickerElement.innerHTML = "";
+
+        let selectEl = document.createElement("select");
+        let confirmBtn = document.createElement("button");
+        confirmBtn.innerHTML = "Confirm";
+
+        confirmBtn.onclick = function() {
+            language = selectEl.value;
+            pickerElement.classList.remove("override");
+
+            languageData = languageIndex.getLocale(language);
+            loadLanguageFile(languageData.filename);
+            localStorage.setItem("language", languageData.locale);
+        }
+
+        pickerElement.appendChild(selectEl);
+        pickerElement.appendChild(confirmBtn);
+
+        languageIndex.list.forEach(thisLang => {
+            let pickerOption = document.createElement("option");
+            pickerOption.innerHTML = thisLang.friendlyname;
+            pickerOption.value = thisLang.locale;
+
+            selectEl.options.add(pickerOption);
+        })
+    }
+
+    setTimeout(function() {
+        pickerElement.classList.add("hidden");
+        localStorage.setItem("language", languageData.locale);
+    }, 6000)
+}
 
 function hidePage() {
     document.body.style.visibility = 'hidden';

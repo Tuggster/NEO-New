@@ -1,5 +1,5 @@
 const NEOBANCO_port = "80";
-const NEOBANCO_ip = `127.0.0.1:${NEOBANCO_port}/backend`;
+const NEOBANCO_ip = `http://54.193.127.146:${NEOBANCO_port}/backend`;
 
 let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 let months = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -68,6 +68,7 @@ function httpReq(method, url, extras) {
             reject(xhr.responseText);
         }
         if (method == 'POST') {
+            console.log(extras)
             xhr.send(extras);
         } else {
             xhr.send();
