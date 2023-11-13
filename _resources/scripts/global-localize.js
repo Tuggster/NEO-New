@@ -2,6 +2,7 @@ function langIndex(list) {
     this.list = list;
 }
 
+
 langIndex.prototype.getLocale = function(locale) {
     let result;
 
@@ -87,8 +88,9 @@ function showPickerDropdown(friendlyname) {
             pickerElement.classList.remove("override");
 
             languageData = languageIndex.getLocale(language);
-            loadLanguageFile(languageData.filename);
+            // loadLanguageFile(languageData.filename);
             localStorage.setItem("language", languageData.locale);
+            location.reload();
         }
 
         pickerElement.appendChild(selectEl);

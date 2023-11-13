@@ -1,9 +1,5 @@
 const NEOBANCO_port = "80";
-<<<<<<< Updated upstream
-const NEOBANCO_ip = `http://54.193.127.146:${NEOBANCO_port}/backend`;
-=======
-const NEOBANCO_ip = `54.193.127.146:${NEOBANCO_port}/backend`;
->>>>>>> Stashed changes
+const NEOBANCO_ip = `184.72.11.154:${NEOBANCO_port}/backend`;
 
 let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]
 let months = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
@@ -72,12 +68,8 @@ function httpReq(method, url, extras) {
             reject(xhr.responseText);
         }
         if (method == 'POST') {
-<<<<<<< Updated upstream
-            console.log(extras)
-=======
             xhr.setRequestHeader('Content-type', 'application/json');
             console.log(extras);
->>>>>>> Stashed changes
             xhr.send(extras);
         } else {
             xhr.send();

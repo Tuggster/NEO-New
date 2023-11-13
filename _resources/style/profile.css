@@ -3,6 +3,17 @@
     display: none !important;
 }
 
+input[type="checkbox"] {
+    float: left;
+    width: fit-content !important;
+    margin-right: 0.5em;
+}
+
+label * {
+    display: inline !important;
+    text-align: left;
+}
+
 /* Flex */
 .flex {
     display: flex;
@@ -13,7 +24,6 @@
 }
 
 .container {
-    width: 30%;
     height: fit-content;
 
     /* border: 1px solid black; */

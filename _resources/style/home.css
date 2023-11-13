@@ -14,6 +14,12 @@ a {
     color: unset;
 }
 
+.options h3 {
+    border: none;
+    padding-bottom: 2px;
+    border-bottom: 2px solid black;
+}
+
 .languageselect {
     z-index: 10;
     position: absolute;
@@ -93,6 +99,14 @@ body, html {
         padding-bottom: 2px;
         width: min-content;
         display: block;
+    }
+
+    h2.regular {
+        display: block;
+        width: fit-content !important;
+        text-align: right !important;
+        margin-left:auto;
+        /* border: none !important; */
     }
 
     .textbox.right h1 {

@@ -30,10 +30,24 @@
             <div class="textbox hidden" name="create">
                 <h2>Create your free account.</h2>
                 <p>No username, email, or phone number required. Just remember your User ID and password to come back to your profile.</p>
-                <input type="password" id="" placeholder="Password">
-                <input type="password" id="" placeholder="Confirm password">
-                <button>Get Started</button>
+                <p>Minimum password length: 8 characters</p>
+                <input type="password" id="createpw" placeholder="Password">
+                <input type="password" id="createpwconfirm" placeholder="Confirm password">
+                <button onclick="createAccount()">Get Started</button>
                 <span><h4>Already have an account? <a onclick="show('login'); hide('create')">Sign in.</a></h4></span>
+            </div>
+
+            <div class="text hidden" name="created">
+                <h1>Welcome!</h1>
+                <h3>Thank you for signing up with NEO Globo.</h3>
+                <p>We use a unique system to protect your identity. Because you don't have a username, email, or other form of identification, <b>please remember your User ID, found below.</b></p>
+
+                <h2 id="userid-display">User ID: </h2>
+
+                <label for="pledge">
+                    <input type="checkbox" name="pledge" id="pledge"> <p>I agree that I have copied my User ID so I can use my account again later.</p>
+                </label>
+                <button onclick="startSession()">Let's get started!</button>
             </div>
         </div>
     </div>
