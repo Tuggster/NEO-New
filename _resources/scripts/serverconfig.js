@@ -18,7 +18,6 @@ function getServerDetails() {
         console.warn(`No language change applied.`);
         showPage();
     });
-
 }
 
 function forceLeadingZeros(digits) {

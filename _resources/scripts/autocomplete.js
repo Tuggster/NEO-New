@@ -147,6 +147,7 @@ function pullRegionAutocomplete() {
     const promise = new Promise((resolve, reject) => {
         httpReq("GET", `http://${NEOBANCO_ip}/list/regions?state=${state}&fragment=${fragment}`).then(res => {
             let regions = JSON.parse(res);
+            console.log(regions)
             resolve(regions);
         }).catch(err => {
             console.error(err);
