@@ -52,9 +52,19 @@ function addFrameListeners() {
         console.log(value, nextBtn)
         if (nextBtn) {
             nextBtn.addEventListener("click", function() {
-                if (choices[value] || value == "location") {
+                if (choices[value]) {
                     collapseFrame();
                     revealFrame();
+                }
+
+                if (value == "location") {
+                    let state = document.getElementById("state-dropdown").value;
+                    let location = document.getElementById("region-text").value;;
+
+                    if (state && location) {
+                        collapseFrame();
+                        revealFrame();    
+                    }
                 }
             })
         }
