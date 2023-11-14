@@ -56,6 +56,8 @@ function selectCategoryOption(category, option) {
         option.classList.add("active");
     }
 
+    console.log(category, option)
+
     setFilter(category, option);
 }
 
