@@ -80,6 +80,10 @@ function refreshPosts() {
 	fetchTrades(filters);
 }
 
+function serverReady() {
+    fetchTrades();
+}
+
 let fetchedTrades = new Array();
 function fetchTrades(filters) {
 	let queryString = new URLSearchParams();

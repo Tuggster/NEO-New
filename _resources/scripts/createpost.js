@@ -132,10 +132,8 @@ function sendPost() {
 
     var url = `http://${NEOBANCO_ip}/create`;
 
-    console.log(postArgs);
+    console.log(url);
     let request = JSON.stringify(postArgs)
-    console.log(request);
-
     httpReq('POST', url, request).then(function(res) {
         if (res == "Unauthorized") {
             console.log("Bad login.");
