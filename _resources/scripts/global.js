@@ -19,6 +19,7 @@ function clamp(num, min, max) {
 }
 
 function httpReq(method, url, extras) {
+    console.log(method, extras);
     const makeRequest = new Promise((resolve, reject) => {
         var xhr = new XMLHttpRequest();
         if ("withCredentials" in xhr) {
@@ -39,7 +40,13 @@ function httpReq(method, url, extras) {
         xhr.onerror = function() {
             reject(xhr.responseText);
         }
-        xhr.send();
+        if (method == 'POST') {
+            xhr.setRequestHeader('Content-type', 'application/json');
+            console.log(extras);
+            xhr.send(extras);
+        } else {
+            xhr.send();
+        }
     });
 
     return makeRequest;

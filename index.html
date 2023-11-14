@@ -5,14 +5,138 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="_resources/style/home.css">
     <link rel="stylesheet" href="_resources/style/global.css">
+    <link rel="stylesheet" href="_resources/style/postmodal.css">
+    <link rel="stylesheet" href="_resources/style/autocomplete.css">
+    <script src="_resources/scripts/serverconfig.js"></script>
     <script src="_resources/scripts/home.js"></script>
     <script src="_resources/scripts/global.js"></script>
     <script src="_resources/scripts/global-localize.js"></script>
-    <script src="_resources/scripts/serverconfig.js"></script>
+    <script src="_resources/scripts/createpost.js"></script>
+    <script src="_resources/scripts/autocomplete.js"></script>
     <title>NEO Banco</title>
 </head>
 <body>
+    <div class="create-post-modal hidden">
+        <div class="post-modal-list">
+            <h1>&#9312; Privacy</h1>
+            <div value="privacy" class="frame">
+                <div>
+                    <h3 value="0">Sombras</h3>
+                    <p>No account required, but you won't be able to receive messages.</p>
+                </div>
+                <div>
+                    <h3 value="1">Luz</h3>
+                    <p>Link this post to your account to allow users to respond.</p>
+                </div>
+                <button class="next">
+                    Next page
+                </button>
+            </div>
+    
+            <h1>&#9313; Bartering, money, or both?</h1>
+            <div value="exchange" class="hidden frame">
+                <div>
+                    <h3 value="1">Money</h3>
+                    <p>Choose this option if you're only willing to trade for money.</p>
+                </div>
+                <div>
+                    <h3 value="2">Bartering</h3>
+                    <p>Choose this option if you don't have or need money, and would rather barter.</p>
+                </div>
+                <div>
+                    <h3 value="3">Open to both</h3>
+                    <p>Choose this option if you're willing to accept money, or bartering.</p>
+                </div>
+                <button class="next">
+                    Next page
+                </button>
+            </div>
+    
+            <h1>&#9314; Offering or Requesting</h1>
+            <div value="direction" class="hidden frame">
+                <div>
+                    <h3 value="0">Offering</h3>
+                    <p>Choose this option if you're offering something up to your community.</p>
+                </div>
+                <div >
+                    <h3 value="1">Requesting</h3>
+                    <p>Choose this option if you're requesting help, goods, or a service from your community.</p>
+                </div>
+                <button class="next">
+                    Next page
+                </button>
+            </div>
 
+            <h1>&#9315; Category</h1>
+            <div value="category" class="hidden frame">
+                <h2>Necessities</h2>
+                <div>
+                    <h3>Food</h3>
+                </div>
+                <div>
+                    <h3>Health</h3>
+                </div>
+                <div>
+                    <h3>Transportation</h3>
+                </div>
+                <h2>Services</h2>
+                <div>
+                    <h3>Care</h3>
+                </div>
+                <div>
+                    <h3>Auto repair</h3>
+                </div>
+                <h2>Entertainment</h2>
+                <div>
+                    <h3>Music</h3>
+                </div>
+                <h2>Advice</h2>
+                <div>
+                    <h3>Tutoring</h3>
+                </div>
+                <div>
+                    <h3>Take a Seat</h3>
+                </div>
+
+
+
+                <button class="next">
+                    Next page
+                </button>
+            </div>
+
+            <h1>&#9316; Location</h1>
+            <div value="location" class="hidden frame">
+                <h3>
+                    State
+                </h3>
+                <select name="" id="state-dropdown"></select>
+                <br>
+                <h3>Location</h3>
+                <form autocomplete="off" class="relative">
+                    <input type="text" class="required" id="region-text" onkeydown="">
+                    <div class="autocomplete-frame" style="display: none">
+
+                    </div>
+                </form>
+
+                <button class="next">
+                    Next page
+                </button>
+
+        </div>
+
+            <h1>&#9317; Post Details</h1>
+            <div class="hidden content frame">
+                <input type="text" name="" id="title" placeholder="Post Title"> <br><br>
+                <textarea name="" id="details" cols="30" rows="10" placeholder="Post details. Describe what you want, what you need, or what you have to offer here."></textarea>
+            
+                <br>
+                <input class="userid hidden" type="text" placeholder="User ID"><br>
+                <input class="userpw hidden" type="password" placeholder="Password">
+            </div>
+        </div>
+    </div>
 
     <div class="page-content">
         <div class="page-block whatever" style="--block-height: 105vh; --parallax-speed: 2.0">
@@ -110,7 +234,7 @@
                         <p>If you would like viewers to be able to respond to your post, select the Luz privacy setting, and link to your profile.</p>
                         <p>If you want to remain anonymous, select the Sombras privacy setting, and post without the need to sign up.</p>
                         <div class="flex" style="justify-content: center;">
-                            <button><span>Create Post</span></button>
+                            <button onclick="showModal()"><span>Create Post</span></button>
                         </div>
                     </div>    
                 </div>
@@ -183,5 +307,19 @@
             <p id="name"></p>
         </div>
     </template>
+
+    <template id="autocomplete-template">
+        <div class="autocomplete">
+            <p id="autocomplete-value"></p>
+            <p class="autocomplete-usage">18 posts</p>
+            <div class="autocomplete-relevence"> </div>
+        </div>
+    </template>
+
+    <template id="option-template">
+        <option value="test">test</option>
+    </template>
+
+
 </body>
 </html>

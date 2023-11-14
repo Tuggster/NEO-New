@@ -91,6 +91,7 @@ function fetchTrades(filters) {
 	}
 
 	// console.log(queryString)
+    console.log(NEOBANCO_ip);
 	var url = `http://${NEOBANCO_ip}/list?${queryString.toString()}`;
 	let rowContainer = document.querySelector(".page-content");
 
